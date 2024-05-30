@@ -1,0 +1,12 @@
+.buttonWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    align-items: flex-end;
+    background-color: papayawhip;
+    border: .25rem black solid;
+    border-radius:20px;
+}
