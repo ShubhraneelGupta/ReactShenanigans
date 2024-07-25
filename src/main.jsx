@@ -1,8 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
 import './index.scss'
-import Ground from './Ground.jsx'
+import Ground from '../components/Ground/Ground'
 
 
 
