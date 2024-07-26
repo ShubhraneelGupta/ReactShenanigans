@@ -1,6 +1,18 @@
 $height:300px;
 $width:300px;
 
+.mouse{
+    height: 50px;
+    width: 50px;
+    left: 0;
+    position: absolute;
+    background-color: invert($color: #000000);
+    border-radius: 50%;
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
 .wrapper {
     position: absolute;
     top: 50vh;
@@ -11,6 +23,7 @@ $width:300px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
 
     .box {
         height: $height;

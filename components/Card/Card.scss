@@ -1,0 +1,51 @@
+.card-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1000px;
+    height: 500px;
+    background-color: black;
+    margin: 10rem auto;
+    border-radius: 30px;
+
+
+
+
+    .input-mock {
+        color: white;
+        width: 50%;
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0px 50px;
+
+        .input {
+            margin: 20px 0;
+            width: 100%;
+
+            hr {
+                width: 70%;
+            }
+        }
+    }
+
+    .output-mock {
+        width: 50%;
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: white 2px dashed;
+        border-radius: 30px;
+        margin: 0px 50px;
+
+        img {
+            height: 80%;
+            width: 80%;
+            border-radius: 30px;
+        }
+    }
+}
