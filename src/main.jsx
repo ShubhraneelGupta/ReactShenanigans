@@ -8,6 +8,6 @@ import Card from '../components/Card/Card'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Card src="/src/rengoku.jpg" />
+    <Ground/>
   </React.StrictMode>,
 )
