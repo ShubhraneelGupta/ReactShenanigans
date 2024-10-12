@@ -1,11 +1,10 @@
-import './App.scss'
-import {useState} from 'react'
-import CurrencyConvertor from '../components/currencyConvertor/currencyConvertor'
-import Ground from './Ground'
 
+import Hero from '../components/Hero/Hero'
+import Accordian from '../components/Accordian/Accordian'
+import MatrixMethod from '../components/MatrixMethod/MatrixMethod'
 
 function App(){
-  return <Ground />
+  return <MatrixMethod/>
 }
 
 export default App
