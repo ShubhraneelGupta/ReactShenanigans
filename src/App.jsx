@@ -5,6 +5,7 @@ function App() {
   const [ipAddress, setIpAddress] = useState('');
   const [dateTime, setDateTime] = useState('');
   const [loading, setLoading] = useState(false);
+  const [saving, setSaving] = useState(false)
 
   const fetchTrendingTopics = async () => {
     setLoading(true);
@@ -45,10 +46,41 @@ function App() {
     setDateTime(formattedDateTime);
   };
 
+  const saveToDB = async () => {
+    setSaving(true)
+    const payload = {
+      trendingTopics,
+      ipAddress,
+      dateTime
+    };
+  
+    try {
+      const response = await fetch('/api/save', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'ngrok-skip-browser-warning': 'true'
+        },
+        body: JSON.stringify(payload)
+      });
+      
+      const result = await response.json();
+      if (response.ok) {
+        console.log('Data saved:', result.message);
+      } else {
+        console.error('Error saving data:', result.message);
+      }
+    } catch (error) {
+      console.error('Error sending data to server:', error);
+    }
+    setSaving(false);
+  };
+
   const handleClick = async () => {
     await fetchTrendingTopics();
     await fetchIpAddress();
     fetchDateTime();
+    await saveToDB()
   };
 
   return (
@@ -67,6 +99,7 @@ function App() {
       <p className="ip-address">{ipAddress}</p>
       <h2 className="header">Date and Time (IST)</h2>
       <p className="ip-address">{dateTime}</p>
+      {saving && <p>Saving to database....</p>}
     </div>
   );
 }
