@@ -1,3 +1,4 @@
+// Frontend Code - React
 import React, { useState } from 'react';
 
 function App() {
@@ -5,7 +6,7 @@ function App() {
   const [ipAddress, setIpAddress] = useState('');
   const [dateTime, setDateTime] = useState('');
   const [loading, setLoading] = useState(false);
-  const [saving, setSaving] = useState(false)
+  const [saving, setSaving] = useState(false);
 
   const fetchTrendingTopics = async () => {
     setLoading(true);
@@ -47,41 +48,58 @@ function App() {
   };
 
   const saveToDB = async () => {
-    setSaving(true)
+    setSaving(true);
     const payload = {
-      trendingTopics,
-      ipAddress,
-      dateTime
+      id: crypto.randomUUID(),
+      trend1: trendingTopics[0],
+      trend2: trendingTopics[1],
+      trend3: trendingTopics[2],
+      trend4: trendingTopics[3],
+      trend5: trendingTopics[4],
+      ip: ipAddress,
+      datetime: dateTime,
     };
-  
+
     try {
-      const response = await fetch('/api/save', {
+      const response = await fetch('https://patient-firefly-fun.ngrok-free.app/api/save', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'ngrok-skip-browser-warning': 'true'
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
       });
-      
+
       const result = await response.json();
       if (response.ok) {
-        console.log('Data saved:', result.message);
+        alert('Data saved successfully!');
       } else {
         console.error('Error saving data:', result.message);
+        alert(`Error: ${result.message}`);
       }
     } catch (error) {
       console.error('Error sending data to server:', error);
+      alert('Failed to save data. Please try again.');
     }
+
     setSaving(false);
   };
 
   const handleClick = async () => {
-    await fetchTrendingTopics();
-    await fetchIpAddress();
-    fetchDateTime();
-    await saveToDB()
+    setLoading(true); 
+  
+    await fetchTrendingTopics(); 
+    await fetchIpAddress(); 
+    fetchDateTime(); 
+  
+    setLoading(false);
   };
+
+  const saveToDBClick = async () => {
+    if(trendingTopics.length == 0) alert('Fetch first')
+    setSaving(true);
+    await saveToDB();
+    setSaving(false);
+  }
 
   return (
     <div className="App">
@@ -99,7 +117,9 @@ function App() {
       <p className="ip-address">{ipAddress}</p>
       <h2 className="header">Date and Time (IST)</h2>
       <p className="ip-address">{dateTime}</p>
-      {saving && <p>Saving to database....</p>}
+      <button onClick={saveToDBClick} disabled={loading || saving}>
+        save
+      </button>
     </div>
   );
 }
