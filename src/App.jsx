@@ -103,7 +103,7 @@ function App() {
 
   return (
     <div className="App">
-      It does take around 20-25 secs Please wait
+      It does take around 20-25 secs Please wait<br/>
       <button onClick={handleClick} disabled={loading} className="fetch-button">
         {loading ? 'Loading...' : 'Fetch Data'}
       </button>
