@@ -103,6 +103,7 @@ function App() {
 
   return (
     <div className="App">
+      <h1>Sorry the server's down.</h1>
       It does take around 20-25 secs Please wait<br/>
       <button onClick={handleClick} disabled={loading} className="fetch-button">
         {loading ? 'Loading...' : 'Fetch Data'}
